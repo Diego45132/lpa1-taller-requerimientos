@@ -11,9 +11,11 @@
 
 ## Descripción del Proyecto
 
-TODO: Corregir la descripción - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut quam dolor. Quisque elementum est sed massa gravida convallis. Donec volutpat turpis eget lectus feugiat congue. Morbi rutrum auctor eleifend. Etiam iaculis libero tellus, vel aliquet erat tempor sed. Duis efficitur quam vel sapien luctus, sed semper lacus mollis. Suspendisse non nunc eleifend, aliquet elit eget, condimentum augue.
+TODO: Somos una agencia de viajes dedicada a ofrecer soluciones integrales para todo tipo de viajeros. Nuestro compromiso es brindar experiencias memorables, adaptadas a las necesidades y expectativas de cada cliente, sin importar el destino, el presupuesto o el propósito del viaje.
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus vel nibh fringilla, porta elit vel, consequat libero. Nulla et libero ac nulla ultricies sollicitudin. Sed viverra non nulla id convallis. Morbi vel varius lacus, in maximus nunc. Praesent sed semper diam. Pellentesque vehicula nulla augue, ut porta dolor consequat at.
+Ofrecemos una amplia gama de servicios que incluyen paquetes turísticos nacionales e internacionales, viajes de placer, corporativos, familiares, de aventura, culturales y más. Contamos con un equipo profesional que proporciona asesoría personalizada en cada etapa del proceso, garantizando calidad, seguridad y eficiencia.
+
+Trabajamos con proveedores confiables y aliados estratégicos en todo el mundo, lo que nos permite ofrecer tarifas competitivas, flexibilidad y opciones personalizadas. Nuestra misión es facilitar el viaje ideal para cada persona, asegurando una experiencia cómoda, organizada y satisfactoria de principio a fin.
 
 ## Documentación
 
