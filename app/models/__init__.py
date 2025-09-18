@@ -8,3 +8,6 @@ from .politica_pago import PoliticaPago
 from .politica_cancelacion import PoliticaCancelacion
 from .pago import Pago
 from .calificacion import Calificacion
+from .habitacion import Habitacion
+from .cliente import Cliente
+from .reserva import Reserva

@@ -1,5 +1,6 @@
 # app/models/pago.py
 from datetime import datetime
+from datetime import datetime
 from app.extensions import db
 
 class Pago(db.Model):
@@ -15,7 +16,7 @@ class Pago(db.Model):
     monto = db.Column(db.Float, nullable=False)
     metodo = db.Column(db.String(100))
     estado = db.Column(db.String(50), default='pendiente')  # pendiente, exitoso, fallido, reembolsado
-    metadata = db.Column(db.Text)  # JSON con info de integración externa
+    info_adicional = db.Column(db.Text)  # JSON con info de integración externa
 
     def __repr__(self):
         return f"<Pago {self.id} reserva {self.reserva_id} estado {self.estado}>"
@@ -34,7 +35,7 @@ class Pago(db.Model):
 
         # Simular respuesta exitosa
         self.estado = 'exitoso'
-        self.metadata = str(payment_info)
+        self.info_adicional = str(payment_info)
         db.session.commit()
 
         # Marcar reserva como confirmada (business rule)
@@ -50,7 +51,7 @@ class Pago(db.Model):
         if amount >= self.monto:
             self.estado = 'reembolsado'
         else:
-            # registrar reembolso parcial en metadata (simplificado)
-            self.metadata = (self.metadata or "") + f" | reembolso_partial:{amount}"
+            # registrar reembolso parcial en info_adicional (simplificado)
+            self.info_adicional = (self.info_adicional or "") + f" | reembolso_partial:{amount}"
         db.session.commit()
         return True
