@@ -14,7 +14,8 @@ def create_app(config_object=Config):
     db.init_app(app)
 
     # Aquí podrías registrar blueprints, comandos, etc.
-    # from .routes import bp as main_bp
-    # app.register_blueprint(main_bp)
+    from .views import  main_bp
+    app.register_blueprint(main_bp)
 
     return app
+
