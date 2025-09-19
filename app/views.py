@@ -13,7 +13,6 @@ def habitaciones():
     habitaciones = Habitacion.query.all()
     return render_template('habitaciones.html', habitaciones=habitaciones)
 
-
 @main_bp.route('/reservas', methods=['GET', 'POST'])
 def reservas():
     if request.method == 'POST':
@@ -45,7 +44,7 @@ def reservas():
     return render_template('reservas.html', reservas=reservas, clientes=clientes, habitaciones=habitaciones)
 
 @main_bp.route('/clientes', methods=['GET', 'POST'])
-def clientes():
+def clientes_view():
     from app.extensions import db
     if request.method == 'POST':
         nombre = request.form.get('nombre')
@@ -60,7 +59,7 @@ def clientes():
                 db.session.add(cliente)
                 db.session.commit()
                 flash('Cliente registrado correctamente.', 'success')
-                return redirect(url_for('main.clientes'))
+                return redirect(url_for('main.clientes_view'))
             except Exception as e:
                 flash(f'Error al registrar cliente: {e}', 'danger')
     clientes = Cliente.query.all()
@@ -73,3 +72,27 @@ def login():
 @main_bp.route('/registro', methods=['GET', 'POST'])
 def registro():
     return render_template('registro.html')
+
+@main_bp.route('/clientes/eliminar/<int:cliente_id>', methods=['POST'])
+def eliminar_cliente(cliente_id):
+    from app.extensions import db
+    cliente = Cliente.query.get_or_404(cliente_id)
+    try:
+        db.session.delete(cliente)
+        db.session.commit()
+        flash('Cliente eliminado correctamente.', 'success')
+    except Exception as e:
+        flash(f'Error al eliminar cliente: {e}', 'danger')
+    return redirect(url_for('main.clientes'))
+
+@main_bp.route('/reservas/eliminar/<int:reserva_id>', methods=['POST'])
+def eliminar_reserva(reserva_id):
+    from app.extensions import db
+    reserva = Reserva.query.get_or_404(reserva_id)
+    try:
+        db.session.delete(reserva)
+        db.session.commit()
+        flash('Reserva eliminada correctamente.', 'success')
+    except Exception as e:
+        flash(f'Error al eliminar reserva: {e}', 'danger')
+    return redirect(url_for('main.reservas'))

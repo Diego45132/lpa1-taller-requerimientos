@@ -7,22 +7,29 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>#</th>
-      <th>Tipo</th>
-      <th>Precio</th>
-      <th>Estado</th>
-      <th>Acciones</th>
+  <th>#</th>
+  <th>Habitaciones</th>
+  <th>Tipo</th>
+  <th>Precio</th>
+  <th>Estado</th>
+  <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
     {% for habitacion in habitaciones %}
     <tr>
       <td>{{ habitacion.id }}</td>
+      <td>
+        {% if habitacion.habitaciones %}
+          <img src="{{ url_for('static', filename=habitacion.habitaciones) }}" alt="Habitaciones" style="width:60px; height:auto;">
+        {% else %}
+          <span class="text-muted">Sin habitaciones</span>
+        {% endif %}
+      </td>
       <td>{{ habitacion.tipo }}</td>
       <td>${{ habitacion.precio_base }}</td>
       <td>{% if habitacion.activa %}Activa{% else %}Inactiva{% endif %}</td>
       <td>
-        <!-- Aquí puedes agregar botones o enlaces para ver, editar, eliminar, etc. -->
         <a href="#" class="btn btn-primary btn-sm">Ver</a>
       </td>
     </tr>
