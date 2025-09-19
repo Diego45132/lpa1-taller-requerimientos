@@ -3,6 +3,34 @@
 {% block content %}
 <h1>Clientes</h1>
 <p>Aquí se mostrarán los clientes registrados y sus datos.</p>
+
+<h3>Registrar nuevo cliente</h3>
+<form method="post" class="mb-4">
+  <div class="row">
+    <div class="col-md-3">
+      <label>Nombre</label>
+      <input type="text" name="nombre" class="form-control" required>
+    </div>
+    <div class="col-md-3">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+    <div class="col-md-3">
+      <label>Teléfono</label>
+      <input type="text" name="telefono" class="form-control">
+    </div>
+    <div class="col-md-3">
+      <label>Dirección</label>
+      <input type="text" name="direccion" class="form-control">
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-success">Registrar</button>
+    </div>
+  </div>
+</form>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -10,11 +38,28 @@
       <th>Nombre</th>
       <th>Email</th>
       <th>Teléfono</th>
+      <th>Dirección</th>
       <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
-    <!-- Aquí irán los datos dinámicos -->
+    {% for cliente in clientes %}
+    <tr>
+      <td>{{ cliente.id }}</td>
+      <td>{{ cliente.nombre }}</td>
+      <td>{{ cliente.email }}</td>
+      <td>{{ cliente.telefono }}</td>
+      <td>{{ cliente.direccion }}</td>
+      <td>
+        <!-- Acciones como ver, editar, eliminar -->
+        <a href="#" class="btn btn-primary btn-sm">Ver</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="6">No hay clientes registrados.</td>
+    </tr>
+    {% endfor %}
   </tbody>
 </table>
 {% endblock %}

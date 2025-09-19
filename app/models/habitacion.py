@@ -16,6 +16,7 @@ class Habitacion(db.Model):
     capacidad = db.Column(db.Integer, nullable=False, default=1)
     activa = db.Column(db.Boolean, default=True)
     servicios_incluidos = db.Column(db.Text)  # JSON o CSV si se desea
+    imagen = db.Column(db.String(255))  # Ruta o nombre del archivo de imagen
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     reservas = db.relationship('Reserva', backref='habitacion', lazy='dynamic', cascade="all, delete-orphan")

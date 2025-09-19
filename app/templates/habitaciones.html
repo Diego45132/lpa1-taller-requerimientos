@@ -15,7 +15,22 @@
     </tr>
   </thead>
   <tbody>
-    <!-- Aquí irán los datos dinámicos -->
+    {% for habitacion in habitaciones %}
+    <tr>
+      <td>{{ habitacion.id }}</td>
+      <td>{{ habitacion.tipo }}</td>
+      <td>${{ habitacion.precio_base }}</td>
+      <td>{% if habitacion.activa %}Activa{% else %}Inactiva{% endif %}</td>
+      <td>
+        <!-- Aquí puedes agregar botones o enlaces para ver, editar, eliminar, etc. -->
+        <a href="#" class="btn btn-primary btn-sm">Ver</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="5">No hay habitaciones registradas.</td>
+    </tr>
+    {% endfor %}
   </tbody>
 </table>
 {% endblock %}
