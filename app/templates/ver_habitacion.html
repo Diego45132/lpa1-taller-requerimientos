@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Habitación {{ habitacion.id }}{% endblock %}
+{% block content %}
+<div class="card shadow-lg mb-4">
+  <div class="row g-0">
+    <div class="col-md-5 d-flex align-items-center justify-content-center bg-light">
+      {% if habitacion.imagen %}
+        <img src="{{ url_for('static', filename=habitacion.imagen) }}" alt="Imagen de la habitación" class="img-fluid rounded m-3" style="max-height: 350px;">
+      {% else %}
+        <span class="text-muted">Sin imagen</span>
+      {% endif %}
+    </div>
+    <div class="col-md-7">
+      <div class="card-body">
+        <h2 class="card-title">Habitación {{ habitacion.id }} - {{ habitacion.tipo }}</h2>
+        <p class="card-text"><b>Descripción:</b> {{ habitacion.descripcion or 'Sin descripción' }}</p>
+        <p class="card-text"><b>Precio base:</b> ${{ habitacion.precio_base }}</p>
+        <p class="card-text"><b>Capacidad:</b> {{ habitacion.capacidad }} persona(s)</p>
+        <p class="card-text"><b>Estado:</b> <span class="badge {% if habitacion.activa %}bg-success{% else %}bg-danger{% endif %}">{% if habitacion.activa %}Activa{% else %}Inactiva{% endif %}</span></p>
+        <p class="card-text"><b>Servicios incluidos:</b> {{ habitacion.servicios_incluidos or 'No especificados' }}</p>
+        <p class="card-text"><b>Fecha de creación:</b> {{ habitacion.created_at.strftime('%d/%m/%Y') }}</p>
+        <p class="card-text"><b>Promedio de calificación:</b> 
+          {% if promedio is not none %}
+            {{ promedio }} / 5
+          {% else %}
+            Sin calificaciones
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card mb-4">
+  <div class="card-header bg-primary text-white">
+    <h3 class="mb-0">Comentarios de clientes</h3>
+  </div>
+  <div class="card-body">
+    {% if comentarios %}
+      <ul class="list-group list-group-flush">
+        {% for c in comentarios %}
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <b>Puntaje:</b> <span class="badge bg-warning text-dark">{{ c.puntaje }}</span>
+                <br>
+                <b>Comentario:</b> {{ c.comentario or 'Sin comentario' }}
+              </div>
+              <small class="text-muted">{{ c.fecha.strftime('%d/%m/%Y') }}</small>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted">No hay comentarios para esta habitación.</p>
+    {% endif %}
+  </div>
+</div>
+<a href="{{ url_for('main.habitaciones') }}" class="btn btn-secondary">Volver a habitaciones</a>
+{% endblock %}

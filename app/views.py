@@ -96,3 +96,14 @@ def eliminar_reserva(reserva_id):
     except Exception as e:
         flash(f'Error al eliminar reserva: {e}', 'danger')
     return redirect(url_for('main.reservas'))
+
+@main_bp.route('/habitaciones/<int:habitacion_id>')
+def ver_habitacion(habitacion_id):
+    from app.models.calificacion import Calificacion
+    habitacion = Habitacion.query.get_or_404(habitacion_id)
+    comentarios = Calificacion.query.filter_by(habitacion_id=habitacion_id).all()
+    if comentarios:
+        promedio = round(sum(c.puntaje for c in comentarios) / len(comentarios), 1)
+    else:
+        promedio = None
+    return render_template('ver_habitacion.html', habitacion=habitacion, comentarios=comentarios, promedio=promedio)
